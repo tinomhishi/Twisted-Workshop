@@ -1,0 +1,5 @@
+<script>
+    let ws = new WebSocket("ws://localhost:9000");
+    ws.onmessage = function(event) { console.log("Received: " + event.data); };
+    ws.send("Hello WebSocket!");
+</script>
