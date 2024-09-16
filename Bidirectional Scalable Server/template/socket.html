@@ -1,5 +1,35 @@
-<script>
-    let ws = new WebSocket("ws://localhost:9000");
-    ws.onmessage = function(event) { console.log("Received: " + event.data); };
-    ws.send("Hello WebSocket!");
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Test</title>
+</head>
+<body>
+    <h1>Socket Life</h1>
+    <script>
+        const socket = new WebSocket('ws://localhost:9000');
+
+        // Handle when connection is open
+        socket.onopen = function(event) {
+            console.log("Connection opened!");
+            socket.send("Hello Server!!");  // Send only after connection is open
+        };
+
+        // Handle incoming messages
+        socket.onmessage = function(event) {
+            console.log("Received from server:", event.data);
+        };
+
+        // Handle errors
+        socket.onerror = function(error) {
+            console.log("WebSocket Error: ", error);
+        };
+
+        // Handle connection closure
+        socket.onclose = function(event) {
+            console.log("Connection closed:", event);
+        };
+    </script>
+</body>
+</html>
